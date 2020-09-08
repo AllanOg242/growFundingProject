@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+
+{% block title %} Accueil {% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col md-12">
+                <div class="jumbotron">
+                    <h2>Admin
+                        <button type="button" class="btn btn-success float-right"
+                                data-toggle="modal" data-target="#mymodal">Ajouter cas
+                        </button>
+                    </h2>
+
+
+                    <table class="table table-hover table-dark">
+                        <tr>
+                            <th>NOM</th>
+                            <th>PRENOM</th>
+                            <th>Adresse</th>
+                            <th>TELEPHONE</th>
+                            <th>Motif</th>
+                            <th>Somme</th>
+                            <th>NumCompte</th>
+                            <th>ACTION</th>
+                        </tr>
+
+                        {% for i in range(0,individus|length) %}
+                            <tr>
+                                <td>{{ individus[i].nomI }}</td>
+                                <td>{{ individus[i].prenomI }}</td>
+                                <td>{{ individus[i].adresseI }}</td>
+                                <td>{{ individus[i].telephoneI }}</td>
+                                <td>{{ individus[i].motifI }}</td>
+                                <td>{{ individus[i].sommeI }}</td>
+                                <td>{{ individus[i].numCompte }}</td>
+                                <td>
+                                    <a href="" class="btn btn-warning btn-xs" data-toggle="modal"
+                                       data-target="#modalmodifier">Modifier</a>
+                                    <a href="" class="btn btn-danger btn-xs"
+                                       onclick="return confirm('Voulez-vous Supprimer?')">Supprimer</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                        <div id="modalmodifier" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title">Modifier un cas</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="" method="POST">
+
+                                            <div class="modal-group">
+                                                <label>Name :</label>
+                                                <input type="hidden" name="id" value="id">
+                                                <input type="text" class="form-control" name="nom" value="Nom">
+                                            </div>
+                                            <div class="modal-group">
+                                                <label>Prenom :</label>
+                                                <input type="text" class="form-control" name="prenom" value="Prenom">
+                                            </div>
+                                            <div class="modal-group">
+                                                <label>Adresse :</label>
+                                                <input type="text" class="form-control" name="adresse" value="Adresse">
+                                            </div>
+                                            <div class="modal-group">
+                                                <label>Telephone :</label>
+                                                <input type="number" class="form-control" name="telephone"
+                                                       value="781538353">
+                                            </div>
+                                            <div class="modal-group">
+                                                <label>Motif :</label>
+                                                <input type="text" class="form-control" name="adresse" value="Maladie">
+                                            </div>
+                                            <div class="modal-group">
+                                                <label>Somme :</label>
+                                                <input type="number" class="form-control" name="telephone"
+                                                       value="22000">
+                                            </div>
+                                            <div class="modal-group">
+                                                <label>NumCompte :</label>
+                                                <input type="text" class="form-control" name="numcompte"
+                                                       value="NumCompte">
+                                            </div>
+                                            <div class="modal-group">
+                                                <button class="btn btn-primary" type="submit">Appliquer Modification
+                                                </button>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </table>
+
+                </div>
+
+                <div id="mymodal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title">Ajouter un cas</h3>
+                            </div>
+                            <div class="modal-body">
+                                <form action="" method="POST">
+                                    {{ form.hidden_tag() }}
+                                    <div class="modal-group">
+                                        <label>Name :</label>
+                                        {{ form.nom(class="form-control ", placeholder="Nom") }}
+                                    </div>
+                                    <div class="modal-group">
+                                        <label>Prenom :</label>
+                                        {{ form.prenom(class="form-control ", placeholder="Prenom") }}
+                                    </div>
+                                    <div class="modal-group">
+                                        <label>Adresse :</label>
+                                        {{ form.adresse(class="form-control ", placeholder="Adresse") }}
+                                    </div>
+                                    <div class="modal-group">
+                                        <label>Telephone :</label>
+                                        {{ form.telephone(class="form-control ", placeholder="Telephone") }}
+                                    </div>
+                                    <div class="modal-group">
+                                        <label>Motif :</label>
+                                        {{ form.motif(class="form-control ", placeholder="Motif") }}
+                                    </div>
+                                    <div class="modal-group">
+                                        <label>Somme :</label>
+                                        {{ form.somme(class="form-control ", placeholder="Somme") }}
+                                    </div>
+                                    <div class="modal-group">
+                                        <label>NumCompte :</label>
+                                        {{ form.numCompte(class="form-control ", placeholder="NumCompte") }}
+                                    </div>
+                                    <div class="modal-group">
+                                        {{ form.submit(class="btn btn-primary") }}
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
